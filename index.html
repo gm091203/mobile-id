@@ -68,33 +68,33 @@
                 </div>
                 <div class="input-group">
                     <label>이름</label>
-                    <input type="text" id="name-input" value="김경민" placeholder="홍길동" required>
+                    <input type="text" id="name-input" value="" placeholder="홍길동" required>
                 </div>
                 <div class="input-group">
                     <label>주민등록번호</label>
                     <div class="rrn-container">
-                        <input type="text" id="rrn1-input" value="000101" placeholder="앞 6자리" maxlength="6"
+                        <input type="text" id="rrn1-input" value="" placeholder="앞 6자리" maxlength="6"
                             class="half-input">
                         <span class="dash">-</span>
-                        <input type="password" id="rrn2-input" value="3000000" placeholder="뒤 7자리" maxlength="7"
+                        <input type="password" id="rrn2-input" value="" placeholder="뒤 7자리" maxlength="7"
                             class="half-input">
                     </div>
                 </div>
                 <div class="input-group">
                     <label>주소</label>
-                    <input type="text" id="address-input" value="경기도 시흥시 배곧동" placeholder="예: 강남대로 123" required>
+                    <input type="text" id="address-input" value="" placeholder="예: 강남대로 123" required>
                 </div>
                 <div class="input-group">
                     <label>도로명</label>
-                    <input type="text" id="road-name-input" value="배곧로 123" placeholder="예: 강남대로 123" required>
+                    <input type="text" id="road-name-input" value="" placeholder="예: 강남대로 123" required>
                 </div>
                 <div class="input-group">
                     <label>상세 주소</label>
-                    <input type="text" id="detail-address-input" value="101동 101호" placeholder="예: 101동 101호" required>
+                    <input type="text" id="detail-address-input" value="" placeholder="예: 101동 101호" required>
                 </div>
                 <div class="input-group">
                     <label>시 (City)</label>
-                    <input type="text" id="city-input" value="시흥시" placeholder="예: 서울특별시" required>
+                    <input type="text" id="city-input" value="" placeholder="예: 서울특별시" required>
                 </div>
                 <button type="button" onclick="showResult()" class="submit-btn">발급 신청하기</button>
             </form>
@@ -221,14 +221,14 @@
 
             // Check for specific credentials to autofill
             if (id === 'khyfool' && pw === 'khyfool@1') {
-                document.getElementById('name-input').value = '김경민';
-                document.getElementById('rrn1-input').value = '071203';
-                document.getElementById('rrn2-input').value = '3217624';
-                document.getElementById('address-input').value = '경기도 시흥시 배곧동';
-                document.getElementById('road-name-input').value = '배곧4로 106-26';
-                document.getElementById('detail-address-input').value = '1003동2102호';
-                document.getElementById('city-input').value = '시흥시';
-                document.getElementById('my-photo').src = 'id_photo.jpg';
+                document.getElementById('name-input').value = '홍길동';
+                document.getElementById('rrn1-input').value = '000101';
+                document.getElementById('rrn2-input').value = '3000000';
+                document.getElementById('address-input').value = '서울특별시 마포구';
+                document.getElementById('road-name-input').value = '마포대로 123';
+                document.getElementById('detail-address-input').value = '101동 101호';
+                document.getElementById('city-input').value = '마포구';
+                document.getElementById('my-photo').src = 'https://via.placeholder.com/150?text=PHOTO';
 
                 // Disable inputs to prevent modification
                 const inputs = document.querySelectorAll('#input-form input');
