@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mobile-id-v3';
+const CACHE_NAME = 'mobile-id-v4';
 const ASSETS = [
     './',
     './index.html',
@@ -11,9 +11,29 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', (event) => {
+    // Force this service worker to become the active service worker
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => cache.addAll(ASSETS))
+    );
+});
+
+self.addEventListener('activate', (event) => {
+    // Claim any clients immediately, so they page is controlled by the new SW
+    event.waitUntil(
+        Promise.all([
+            self.clients.claim(),
+            caches.keys().then((keys) => {
+                return Promise.all(
+                    keys.map((key) => {
+                        if (key !== CACHE_NAME) {
+                            return caches.delete(key);
+                        }
+                    })
+                );
+            })
+        ])
     );
 });
 
