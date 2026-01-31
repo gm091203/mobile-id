@@ -1,6 +1,6 @@
 {
-    "name": "모바일 신분증",
-    "short_name": "신분증",
+    "name": "정부24",
+    "short_name": "정부24",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffffff",
