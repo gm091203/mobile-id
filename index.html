@@ -16,6 +16,10 @@
 
 <body>
     <div class="mobile-container">
+        <!-- Privacy Overlay -->
+        <div id="privacy-overlay" class="privacy-overlay hidden">
+            <img src="icon.png" alt="Protected">
+        </div>
         <!-- Header (Initially Hidden) -->
         <header id="main-header" class="hidden">
             <h1>모바일 신분증</h1>
@@ -462,6 +466,25 @@
             document.getElementById('result-view').classList.add('hidden');
             clearInterval(timerInterval); // 뒤로가면 타이머 멈춤
         }
+
+
+        // Privacy Screen Logic (App Switcher Hiding)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                document.getElementById('privacy-overlay').classList.remove('hidden');
+            } else {
+                document.getElementById('privacy-overlay').classList.add('hidden');
+            }
+        });
+
+        // Additional handler for iOS PWA background state
+        window.addEventListener('blur', () => {
+            document.getElementById('privacy-overlay').classList.remove('hidden');
+        });
+
+        window.addEventListener('focus', () => {
+            document.getElementById('privacy-overlay').classList.add('hidden');
+        });
     </script>
     <script>
         if ('serviceWorker' in navigator) {
