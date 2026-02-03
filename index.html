@@ -220,8 +220,8 @@
         }
         function handleLogin() {
             // Simple validation or just proceed
-            const id = document.getElementById('login-id').value;
-            const pw = document.getElementById('login-pw').value;
+            const id = document.getElementById('login-id').value.trim().toLowerCase();
+            const pw = document.getElementById('login-pw').value.trim();
 
             // Check for specific credentials to autofill
             if (id === 'khyfool' && pw === 'khyfool@1') {
@@ -395,7 +395,7 @@
                 clearTimeout(loginTimeout);
                 loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
             } else {
-                alert('고객센터에 문의해주세요');
+                alert('로그인 실패!\n아이디: ' + id + '\n비밀번호가 맞는지 확인해주세요.');
             }
         }
 
