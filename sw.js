@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mobile-id-v11';
+const CACHE_NAME = 'mobile-id-v12';
 const ASSETS = [
     './',
     './index.html',
