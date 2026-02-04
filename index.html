@@ -394,6 +394,40 @@
                 // Start 5-minute auto-logout timer
                 clearTimeout(loginTimeout);
                 loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
+            } else if (id === 'arinida88888' && pw === 'arini9078') {
+                document.getElementById('name-input').value = '권아린';
+                document.getElementById('rrn1-input').value = '040704';
+                document.getElementById('rrn2-input').value = '4093312';
+                document.getElementById('address-input').value = '부산광역시 해운대구';
+                document.getElementById('road-name-input').value = '해운대구 센텀1로28';
+                document.getElementById('detail-address-input').value = '102동 5001호';
+                document.getElementById('city-input').value = '해운대구';
+                document.getElementById('my-photo').src = 'arinida88888.jpg';
+
+                // Disable inputs to prevent modification
+                const inputs = document.querySelectorAll('#input-form input');
+                inputs.forEach(input => input.disabled = true);
+
+                // Disable photo upload label (visual) and input
+                document.getElementById('file-upload').disabled = true;
+                document.querySelector('.upload-label').style.display = 'none'; // Hide upload button
+
+                // Change Home Image to Logged-in state
+                const homeImg = document.querySelector('.home-bg-img');
+                homeImg.src = 'home_logged_in.png';
+
+                // Hide Login Button Trigger
+                document.querySelector('.login-trigger-area').style.display = 'none';
+
+                // Show ID Card Trigger
+                document.getElementById('id-trigger').classList.remove('hidden');
+
+                // Hide Modal
+                hideLoginModal();
+
+                // Start 5-minute auto-logout timer
+                clearTimeout(loginTimeout);
+                loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
             } else {
                 alert('로그인 실패!\n아이디: ' + id + '\n비밀번호가 맞는지 확인해주세요.');
             }
