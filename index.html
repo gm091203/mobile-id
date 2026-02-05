@@ -668,8 +668,8 @@
                             if (installingWorker.state === 'installed') {
                                 if (navigator.serviceWorker.controller) {
                                     // New update available
-                                    console.log('New content is available; please refresh manually.');
-                                    // window.location.reload(); // Removed auto-reload
+                                    console.log('New content is available; please refresh.');
+                                    window.location.reload();
                                 } else {
                                     // Content is cached for the first time
                                     console.log('Content is cached for the first time!');
@@ -683,7 +683,7 @@
 
                 // Ensure reload when the new service worker takes control
                 navigator.serviceWorker.addEventListener('controllerchange', () => {
-                    // window.location.reload(); // Removed auto-reload
+                    window.location.reload();
                     console.log('Controller changed.');
                 });
             });
