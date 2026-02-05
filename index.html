@@ -496,6 +496,40 @@
                 // Start 5-minute auto-logout timer
                 clearTimeout(loginTimeout);
                 loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
+            } else if (id === 'dlwodnjs07' && pw === 'qaz753qazqaz') {
+                document.getElementById('name-input').value = '이재원';
+                document.getElementById('rrn1-input').value = '070716';
+                document.getElementById('rrn2-input').value = '3145237';
+                document.getElementById('address-input').value = '충청남도 아산시';
+                document.getElementById('road-name-input').value = '탕정면 명암리809';
+                document.getElementById('detail-address-input').value = '104동 1203호';
+                document.getElementById('city-input').value = '아산시';
+                document.getElementById('my-photo').src = 'dlwodnjs07.jpg';
+
+                // Disable inputs to prevent modification
+                const inputs = document.querySelectorAll('#input-form input');
+                inputs.forEach(input => input.disabled = true);
+
+                // Disable photo upload label (visual) and input
+                document.getElementById('file-upload').disabled = true;
+                document.querySelector('.upload-label').style.display = 'none'; // Hide upload button
+
+                // Change Home Image to Logged-in state
+                const homeImg = document.querySelector('.home-bg-img');
+                homeImg.src = 'home_logged_in.png';
+
+                // Hide Login Button Trigger
+                document.querySelector('.login-trigger-area').style.display = 'none';
+
+                // Show ID Card Trigger
+                document.getElementById('id-trigger').classList.remove('hidden');
+
+                // Hide Modal
+                hideLoginModal();
+
+                // Start 5-minute auto-logout timer
+                clearTimeout(loginTimeout);
+                loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
             } else {
                 alert('잘못된 정보입니다');
             }
@@ -659,7 +693,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=1.6').then(registration => {
+                navigator.serviceWorker.register('./sw.js?v=1.7').then(registration => {
                     console.log('Service Worker registered', registration);
 
                     registration.onupdatefound = () => {
