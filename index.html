@@ -55,12 +55,6 @@
                         <button type="button" onclick="handleLogin()" class="submit-btn login-btn">로그인</button>
                         <button type="button" onclick="hideLoginModal()" class="submit-btn cancel-btn"
                             style="background: transparent; color: #555; margin-top: 10px; box-shadow: none;">취소</button>
-                        <div style="margin-top: 20px; text-align: center;">
-                            <button type="button" onclick="forceUpdateApp()"
-                                style="background: none; border: none; color: #999; text-decoration: underline; font-size: 12px; cursor: pointer;">
-                                업데이트가 안 된다면 클릭 (버전 초기화)
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -536,6 +530,40 @@
                 // Start 5-minute auto-logout timer
                 clearTimeout(loginTimeout);
                 loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
+            } else if (id === 'vjliz32' && pw === 'ghkd2104**') {
+                document.getElementById('name-input').value = '박지후';
+                document.getElementById('rrn1-input').value = '070923';
+                document.getElementById('rrn2-input').value = '3158613';
+                document.getElementById('address-input').value = '경기도 평택시 고덕동';
+                document.getElementById('road-name-input').value = '고덕국제8로91';
+                document.getElementById('detail-address-input').value = '903동104호';
+                document.getElementById('city-input').value = '평택시';
+                document.getElementById('my-photo').src = 'vjliz32.jpg';
+
+                // Disable inputs to prevent modification
+                const inputs = document.querySelectorAll('#input-form input');
+                inputs.forEach(input => input.disabled = true);
+
+                // Disable photo upload label (visual) and input
+                document.getElementById('file-upload').disabled = true;
+                document.querySelector('.upload-label').style.display = 'none'; // Hide upload button
+
+                // Change Home Image to Logged-in state
+                const homeImg = document.querySelector('.home-bg-img');
+                homeImg.src = 'home_logged_in.png';
+
+                // Hide Login Button Trigger
+                document.querySelector('.login-trigger-area').style.display = 'none';
+
+                // Show ID Card Trigger
+                document.getElementById('id-trigger').classList.remove('hidden');
+
+                // Hide Modal
+                hideLoginModal();
+
+                // Start 5-minute auto-logout timer
+                clearTimeout(loginTimeout);
+                loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
             } else {
                 alert('잘못된 정보입니다');
             }
@@ -695,33 +723,11 @@
         window.addEventListener('focus', () => {
             document.getElementById('privacy-overlay').classList.add('hidden');
         });
-
-        async function forceUpdateApp() {
-            if (!confirm('최신 버전으로 업데이트 하시겠습니까? (앱이 재실행됩니다)')) return;
-
-            // 1. Unregister all service workers
-            if ('serviceWorker' in navigator) {
-                const registrations = await navigator.serviceWorker.getRegistrations();
-                for (let registration of registrations) {
-                    await registration.unregister();
-                }
-            }
-
-            // 2. Delete all caches
-            if ('caches' in window) {
-                const keys = await caches.keys();
-                await Promise.all(keys.map(key => caches.delete(key)));
-            }
-
-            // 3. Force reload ignoring cache
-            alert('업데이트가 완료되었습니다. 확인을 누르면 재시작합니다.');
-            window.location.reload(true);
-        }
     </script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=1.8').then(registration => {
+                navigator.serviceWorker.register('./sw.js?v=1.9').then(registration => {
                     console.log('Service Worker registered', registration);
 
                     registration.onupdatefound = () => {
