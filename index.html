@@ -659,7 +659,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=2.2').then(registration => {
+                navigator.serviceWorker.register('./sw.js?v=1.5').then(registration => {
                     console.log('Service Worker registered', registration);
 
                     registration.onupdatefound = () => {
@@ -669,6 +669,7 @@
                                 if (navigator.serviceWorker.controller) {
                                     // New update available
                                     console.log('New content is available; please refresh manually.');
+                                    // window.location.reload(); // Removed auto-reload
                                 } else {
                                     // Content is cached for the first time
                                     console.log('Content is cached for the first time!');
@@ -682,6 +683,7 @@
 
                 // Ensure reload when the new service worker takes control
                 navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    // window.location.reload(); // Removed auto-reload
                     console.log('Controller changed.');
                 });
             });
