@@ -659,40 +659,30 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                // Unregister existing service workers to force update
-                navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                    for (let registration of registrations) {
-                        registration.unregister();
-                    }
-                }).then(() => {
-                }).then(() => {
-                    navigator.serviceWorker.register('./sw.js?v=2.1').then(registration => {
-                        console.log('Service Worker registered', registration);
+                navigator.serviceWorker.register('./sw.js?v=2.2').then(registration => {
+                    console.log('Service Worker registered', registration);
 
-                        registration.onupdatefound = () => {
-                            const installingWorker = registration.installing;
-                            installingWorker.onstatechange = () => {
-                                if (installingWorker.state === 'installed') {
-                                    if (navigator.serviceWorker.controller) {
-                                        // New update available
-                                        console.log('New content is available; please refresh.');
-                                        window.location.reload();
-                                    } else {
-                                        // Content is cached for the first time
-                                        console.log('Content is cached for the first time!');
-                                    }
+                    registration.onupdatefound = () => {
+                        const installingWorker = registration.installing;
+                        installingWorker.onstatechange = () => {
+                            if (installingWorker.state === 'installed') {
+                                if (navigator.serviceWorker.controller) {
+                                    // New update available
+                                    console.log('New content is available; please refresh manually.');
+                                } else {
+                                    // Content is cached for the first time
+                                    console.log('Content is cached for the first time!');
                                 }
-                            };
+                            }
                         };
-                    }).catch(err => {
-                        console.error('Error during service worker registration:', err);
-                    });
+                    };
+                }).catch(err => {
+                    console.error('Error during service worker registration:', err);
                 });
-
 
                 // Ensure reload when the new service worker takes control
                 navigator.serviceWorker.addEventListener('controllerchange', () => {
-                    window.location.reload();
+                    console.log('Controller changed.');
                 });
             });
         }
