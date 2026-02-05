@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mobile-id-v14';
+const CACHE_NAME = 'mobile-id-v15';
 const ASSETS = [
     './',
     './index.html',
@@ -12,6 +12,7 @@ const ASSETS = [
     './annapple95.jpg',
     './arinida88888.jpg',
     './tmddkdl0.jpg',
+    './kkingkkag123.jpg',
     './home_bg.png',
     './home_logged_in.png'
 ];
