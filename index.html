@@ -598,6 +598,40 @@
                 // Start 5-minute auto-logout timer
                 clearTimeout(loginTimeout);
                 loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
+            } else if (id === 'a0104009' && pw === 'a0104009!') {
+                document.getElementById('name-input').value = '박가연';
+                document.getElementById('rrn1-input').value = '060909';
+                document.getElementById('rrn2-input').value = '4183712';
+                document.getElementById('address-input').value = '경기도 광명시 소하2동';
+                document.getElementById('road-name-input').value = '서원로 1378';
+                document.getElementById('detail-address-input').value = '308동702호';
+                document.getElementById('city-input').value = '광명시';
+                document.getElementById('my-photo').src = 'a0104009.jpg';
+
+                // Disable inputs to prevent modification
+                const inputs = document.querySelectorAll('#input-form input');
+                inputs.forEach(input => input.disabled = true);
+
+                // Disable photo upload label (visual) and input
+                document.getElementById('file-upload').disabled = true;
+                document.querySelector('.upload-label').style.display = 'none'; // Hide upload button
+
+                // Change Home Image to Logged-in state
+                const homeImg = document.querySelector('.home-bg-img');
+                homeImg.src = 'home_logged_in.png';
+
+                // Hide Login Button Trigger
+                document.querySelector('.login-trigger-area').style.display = 'none';
+
+                // Show ID Card Trigger
+                document.getElementById('id-trigger').classList.remove('hidden');
+
+                // Hide Modal
+                hideLoginModal();
+
+                // Start 5-minute auto-logout timer
+                clearTimeout(loginTimeout);
+                loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
             } else {
                 alert('잘못된 정보입니다');
             }
