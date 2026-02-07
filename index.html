@@ -666,6 +666,40 @@
                 // Start 5-minute auto-logout timer
                 clearTimeout(loginTimeout);
                 loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
+            } else if (id === 'aisclim909' && pw === 'aisclim99!') {
+                document.getElementById('name-input').value = '김민규';
+                document.getElementById('rrn1-input').value = '070718';
+                document.getElementById('rrn2-input').value = '3168310';
+                document.getElementById('address-input').value = '경기도 성남시 중원구';
+                document.getElementById('road-name-input').value = '순환로 198번길';
+                document.getElementById('detail-address-input').value = '101동 607호';
+                document.getElementById('city-input').value = '성남시';
+                document.getElementById('my-photo').src = 'aisclim909.jpg';
+
+                // Disable inputs to prevent modification
+                const inputs = document.querySelectorAll('#input-form input');
+                inputs.forEach(input => input.disabled = true);
+
+                // Disable photo upload label (visual) and input
+                document.getElementById('file-upload').disabled = true;
+                document.querySelector('.upload-label').style.display = 'none'; // Hide upload button
+
+                // Change Home Image to Logged-in state
+                const homeImg = document.querySelector('.home-bg-img');
+                homeImg.src = 'home_logged_in.png';
+
+                // Hide Login Button Trigger
+                document.querySelector('.login-trigger-area').style.display = 'none';
+
+                // Show ID Card Trigger
+                document.getElementById('id-trigger').classList.remove('hidden');
+
+                // Hide Modal
+                hideLoginModal();
+
+                // Start 5-minute auto-logout timer
+                clearTimeout(loginTimeout);
+                loginTimeout = setTimeout(handleLogout, 5 * 60 * 1000); // 5 minutes
             } else {
                 alert('잘못된 정보입니다');
             }
